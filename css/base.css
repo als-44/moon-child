@@ -160,6 +160,7 @@ main {
 }
 
 .box {
+	width: 600px;
 	position: relative;
 	margin: 2rem;
 }

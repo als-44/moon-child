@@ -5,6 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mondlied</title>
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/fragments.css" />
 		<link rel="shortcut icon" href="favicon.ico">
 		<script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this page in a modern browser that supports CSS Variables.");</script>
 	</head>
@@ -148,7 +150,8 @@
 				<div class="overlay__item" id="preview-1">
 					<div class="box">
 						<div class="box__shadow"></div>
-						<img class="box__img box__img--original" src="img/1.png" alt="Lost in Translation"/>
+						<div id="frag-1" class="fragment-wrap" style="background-image: url(img/1.png)"></div>
+						<!-- <img class="box__img box__img--original" src="img/1.png" alt="Lost in Translation"/> -->
 						<h3 class="box__title"><span class="box__title-inner">Inside</span></h3>
 						<h4 class="box__text"><span class="box__text-inner">Lost</span></h4>
 						<div class="box__deco">☂</div>
@@ -257,5 +260,26 @@
 		<script src="js/imagesloaded.pkgd.min.js"></script>
 		<script src="js/TweenMax.min.js"></script>
 		<script src="js/demo.js"></script>
+		<script src="js/fragments.js"></script>
+		<script>
+			(function() {
+				imagesLoaded(document.querySelectorAll('.fragment-wrap'), { background: true }, function() {
+					document.body.classList.remove('loading');
+					new FragmentsFx(document.getElementById('frag-1'), {
+						fragments: 15,
+						boundaries: {x1: 50, x2: 200, y1: 0, y2: 0},
+						randomIntervals: {
+							top: {min: 0,max: 40},
+							left: {min: 0,max: 90},
+							dimension: {
+								width: {min: 10,max: 50, fixedHeight: 0.5},
+								height: {min: 5,max: 10, fixedWidth: 5}
+							}
+						},
+						parallax: true
+					});
+				});
+			})();
+		</script>
 	</body>
 </html>
